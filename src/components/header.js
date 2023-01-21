@@ -12,8 +12,8 @@ const pages = ["Home", "About", "Portofolio"];
 function Header() {
 	const ContactButton = (
 		<FlexRow justifyContent="flex-end" mr={{ xs: 1, md: 2 }} p={2}>
-			<Button variant="outlined" startIcon={<WhatsAppIcon />}>
-				Chat me
+			<Button variant="outlined" startIcon={<WhatsAppIcon />} sx={{ p: 1 }}>
+				<Typography sx={{ textTransform: "none" }}>Chat me</Typography>
 			</Button>
 		</FlexRow>
 	);
@@ -38,7 +38,7 @@ function Header() {
 		<FlexRow sx={{ display: { xs: "flex", sm: "none" } }}>
 			<FlexBox ml={1} justifyContent="center">
 				<IconButton sx={{ justifyContent: "flex-start" }} size="large">
-					<MenuIcon />
+					<MenuIcon sx={{ color: "white" }} />
 				</IconButton>
 			</FlexBox>
 			<FlexRow alignItems="center" justifyContent="center">
