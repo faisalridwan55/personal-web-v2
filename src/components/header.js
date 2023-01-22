@@ -1,3 +1,4 @@
+import Slide from "@mui/material/Slide";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -6,17 +7,18 @@ import Typography from "@mui/material/Typography";
 import EmailIcon from "@mui/icons-material/Email";
 
 import { FlexBox, FlexRow } from "./grid";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 const pages = ["Home", "About", "Portofolio"];
 
 const ContactButton = (
-	<FlexRow justifyContent="flex-end" mr={{ xs: 1, md: 2 }} p={2}>
+	<FlexRow justifyContent="flex-end" mr={{ xs: 1, md: 2 }} py={2}>
 		<Button
 			variant="outlined"
 			startIcon={<EmailIcon />}
 			sx={{ px: 1.5, display: { xs: "none", md: "flex" } }}
 		>
-			<Typography sx={{ textTransform: "none" }}>Email me</Typography>
+			Email me
 		</Button>
 		<Button
 			variant="outlined"
@@ -46,8 +48,11 @@ const DesktopElement = (
 const MobileElement = (
 	<FlexRow sx={{ display: { xs: "flex", sm: "none" } }}>
 		<FlexBox ml={1} justifyContent="center">
-			<IconButton sx={{ justifyContent: "flex-start" }} size="large">
-				<MenuIcon sx={{ color: "white" }} />
+			<IconButton
+				size="large"
+				sx={{ justifyContent: "flex-start", width: "fit-content" }}
+			>
+				<MenuIcon />
 			</IconButton>
 		</FlexBox>
 		<FlexRow alignItems="center" justifyContent="center">
@@ -59,10 +64,12 @@ const MobileElement = (
 
 function Header() {
 	return (
-		<AppBar position="static" sx={{ backgroundColor: "black" }}>
-			{DesktopElement}
-			{MobileElement}
-		</AppBar>
+		<Slide direction="down" in={true} timeout={1000} mountOnEnter>
+			<Grid>
+				{DesktopElement}
+				{MobileElement}
+			</Grid>
+		</Slide>
 	);
 }
 export default Header;
