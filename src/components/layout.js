@@ -1,11 +1,10 @@
-import { Outlet } from "react-router-dom";
 import Header from "./header";
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	return (
 		<div style={{ minHeight: "100vh" }}>
 			<Header />
-			<Outlet />
+			{children}
 		</div>
 	);
 };
