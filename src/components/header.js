@@ -34,34 +34,35 @@ const Title = ({ isDesktop }) => {
 	);
 };
 
-const DesktopElement = (
-	<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
-		<FlexRow justifyContent="flex-start" ml={2}>
-			{pages.map((page) => (
-				<HoverTextButton key={page}>{page}</HoverTextButton>
-			))}
+function Header({ sidebarHandler }) {
+	const DesktopElement = (
+		<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
+			<FlexRow justifyContent="flex-start" ml={2}>
+				{pages.map((page) => (
+					<HoverTextButton key={page}>{page}</HoverTextButton>
+				))}
+			</FlexRow>
+			<Title isDesktop />
+			<ContactButton isDesktop />
 		</FlexRow>
-		<Title isDesktop />
-		<ContactButton isDesktop />
-	</FlexRow>
-);
+	);
 
-const MobileElement = (
-	<FlexRow sx={{ display: { xs: "flex", sm: "none" } }}>
-		<FlexBox ml={1} justifyContent="center">
-			<IconButton
-				size="large"
-				sx={{ justifyContent: "flex-start", width: "fit-content" }}
-			>
-				<MenuIcon />
-			</IconButton>
-		</FlexBox>
-		<Title />
-		<ContactButton />
-	</FlexRow>
-);
+	const MobileElement = (
+		<FlexRow sx={{ display: { xs: "flex", sm: "none" } }}>
+			<FlexBox ml={1} justifyContent="center">
+				<IconButton
+					size="large"
+					onClick={sidebarHandler}
+					sx={{ justifyContent: "flex-start", width: "fit-content" }}
+				>
+					<MenuIcon sx={{ fontSize: "32px" }} />
+				</IconButton>
+			</FlexBox>
+			<Title />
+			<ContactButton />
+		</FlexRow>
+	);
 
-function Header() {
 	return (
 		<Slide direction="down" in={true} timeout={1000} mountOnEnter>
 			<Grid>
