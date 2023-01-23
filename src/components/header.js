@@ -7,6 +7,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 import { FlexBox, FlexRow } from "./grid";
+import { HoverTextButton } from "./button";
 
 const pages = ["Home", "About", "Portofolio"];
 
@@ -37,19 +38,7 @@ const DesktopElement = (
 	<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
 		<FlexRow justifyContent="flex-start" ml={2}>
 			{pages.map((page) => (
-				<Button
-					key={page}
-					sx={{
-						my: 2,
-						transition: "transform 0.5s",
-						"&:hover": {
-							backgroundColor: "transparent",
-							transform: "scale(1.1)",
-						},
-					}}
-				>
-					{page}
-				</Button>
+				<HoverTextButton key={page}>{page}</HoverTextButton>
 			))}
 		</FlexRow>
 		<Title isDesktop />
