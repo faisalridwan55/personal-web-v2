@@ -4,7 +4,7 @@ const themeOptions = {
 	palette: {
 		type: "light",
 		primary: {
-			main: "#131e35",
+			main: "#192846",
 		},
 		secondary: {
 			main: "#00acc1",
@@ -14,10 +14,10 @@ const themeOptions = {
 			paper: "#ffffff",
 		},
 		text: {
-			primary: "rgba(6,6,6,0.87)",
-			secondary: "rgba(0,0,0,0.54)",
-			disabled: "rgba(0,0,0,0.38)",
-			hint: "rgba(0,0,0,0.38)",
+			primary: "#192846",
+			hint: "rgba(25,40,70,0.38)",
+			secondary: "rgba(25,40,70,0.54)",
+			disabled: "rgba(25,40,70,0.38)",
 		},
 		error: {
 			main: "#f44336",
@@ -59,7 +59,6 @@ const themeOptions = {
 		},
 		button: {
 			fontFamily: "Lilita One",
-			fontWeight: 500,
 		},
 		caption: {
 			fontFamily: "Vesper Libre",
