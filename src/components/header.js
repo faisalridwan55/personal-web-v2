@@ -18,7 +18,7 @@ const ContactButton = ({ isDesktop }) => {
 		sx: { px: isDesktop ? 1.5 : 0.5 },
 	};
 	return (
-		<FlexRow justifyContent="flex-end" mr={{ xs: 1, sm: 2 }} py={2}>
+		<FlexRow justifyContent="flex-end" py={2}>
 			<Button {...props}>{isDesktop ? "Contact" : <EmailIcon />}</Button>
 		</FlexRow>
 	);
@@ -37,7 +37,7 @@ const Title = ({ isDesktop }) => {
 function Header({ sidebarHandler }) {
 	const DesktopElement = (
 		<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
-			<FlexRow justifyContent="flex-start" ml={2}>
+			<FlexRow justifyContent="flex-start">
 				{pages.map((page) => (
 					<HoverTextButton key={page}>{page}</HoverTextButton>
 				))}
@@ -49,11 +49,15 @@ function Header({ sidebarHandler }) {
 
 	const MobileElement = (
 		<FlexRow sx={{ display: { xs: "flex", sm: "none" } }}>
-			<FlexBox ml={1} justifyContent="center">
+			<FlexBox justifyContent="center">
 				<IconButton
 					size="large"
 					onClick={sidebarHandler}
-					sx={{ justifyContent: "flex-start", width: "fit-content" }}
+					sx={{
+						paddingLeft: 0,
+						width: "fit-content",
+						justifyContent: "flex-start",
+					}}
 				>
 					<MenuIcon sx={{ fontSize: "32px" }} />
 				</IconButton>
@@ -65,7 +69,7 @@ function Header({ sidebarHandler }) {
 
 	return (
 		<Slide direction="down" in={true} timeout={1000} mountOnEnter>
-			<Grid>
+			<Grid px={{ xs: 1.5, sm: 2 }}>
 				{DesktopElement}
 				{MobileElement}
 			</Grid>
