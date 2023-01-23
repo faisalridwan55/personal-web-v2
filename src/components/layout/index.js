@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
-import { Drawer, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+	Button,
+	ListItem,
+	ListItemButton,
+	ListItemText,
+	Zoom,
+} from "@mui/material";
 
 import Header from "../header";
 import { PAGES } from "../../App";
@@ -13,6 +19,23 @@ const Layout = () => {
 
 	const sidebarMenu = (
 		<>
+			<Zoom in={sidebarOpen} style={{ transitionDelay: "500ms" }}>
+				<Button
+					color="secondary"
+					variant="outlined"
+					onClick={sidebarHandler}
+					startIcon={<CloseIcon />}
+					sx={{
+						px: 1,
+						mt: 1.5,
+						py: 0.5,
+						mx: "auto",
+						".MuiButton-startIcon": { fontSize: "24px", marginRight: 0 },
+					}}
+				>
+					Close
+				</Button>
+			</Zoom>
 			{PAGES.map((page) => (
 				<ListItem key={page.path} disablePadding>
 					<ListItemButton>
