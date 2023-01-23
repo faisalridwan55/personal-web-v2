@@ -5,11 +5,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import EmailIcon from "@mui/icons-material/Email";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Link as RouterLink } from "react-router-dom";
 
+import { PAGES } from "../App";
 import { FlexBox, FlexRow } from "./grid";
 import { HoverTextButton } from "./button";
-
-const pages = ["Home", "About", "Portofolio"];
+import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
 
 const ContactButton = ({ isDesktop }) => {
 	const props = {
@@ -38,8 +39,14 @@ function Header({ sidebarHandler }) {
 	const DesktopElement = (
 		<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
 			<FlexRow justifyContent="flex-start">
-				{pages.map((page) => (
-					<HoverTextButton key={page}>{page}</HoverTextButton>
+				{PAGES.map((page) => (
+					<HoverTextButton
+						key={page.path}
+						component={RouterLink}
+						to={page.path || "/"}
+					>
+						{capitalizeFirstLetter(page.path || "Home")}
+					</HoverTextButton>
 				))}
 			</FlexRow>
 			<Title isDesktop />

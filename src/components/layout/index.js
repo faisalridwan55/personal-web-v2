@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link as RouterLink } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+
 import {
+	Zoom,
 	Button,
 	ListItem,
 	ListItemButton,
 	ListItemText,
-	Zoom,
 } from "@mui/material";
 
 import Header from "../header";
-import { PAGES } from "../../App";
 import Sidebar from "./sidebar";
+import { PAGES } from "../../App";
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 
 const Layout = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -38,8 +40,10 @@ const Layout = () => {
 			</Zoom>
 			{PAGES.map((page) => (
 				<ListItem key={page.path} disablePadding>
-					<ListItemButton>
-						<ListItemText primary={page.path === "" ? "Home" : page.path} />
+					<ListItemButton component={RouterLink} to={page.path || "/"}>
+						<ListItemText
+							primary={capitalizeFirstLetter(page.path || "Home")}
+						/>
 					</ListItemButton>
 				</ListItem>
 			))}

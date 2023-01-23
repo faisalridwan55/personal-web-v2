@@ -9,8 +9,8 @@ import Portofolio from "./pages/portofolio";
 
 export const PAGES = [
 	{ path: "", element: <Home /> },
-	{ path: "About", element: <About /> },
-	{ path: "Portofolio", element: <Portofolio /> },
+	{ path: "about", element: <About /> },
+	{ path: "portofolio", element: <Portofolio /> },
 ];
 
 function App() {
