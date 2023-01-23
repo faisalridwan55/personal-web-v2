@@ -5,11 +5,10 @@ import { Drawer, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import Header from "../header";
 import { PAGES } from "../../App";
+import Sidebar from "./sidebar";
 
 const Layout = () => {
-	const theme = useTheme();
 	const [sidebarOpen, setSidebarOpen] = useState(false);
-
 	const sidebarHandler = () => setSidebarOpen((prevState) => !prevState);
 
 	const sidebarMenu = (
@@ -27,21 +26,9 @@ const Layout = () => {
 		<div style={{ minHeight: "100vh" }}>
 			<Header sidebarHandler={sidebarHandler} />
 
-			<Drawer
-				anchor={"left"}
-				open={sidebarOpen}
-				onClose={sidebarHandler}
-				PaperProps={{
-					sx: {
-						minWidth: "60vw",
-						backgroundColor: theme.palette.primary.dark,
-						color: theme.palette.primary.contrastText,
-					},
-				}}
-				transitionDuration={{ enter: 500, exit: 500 }}
-			>
+			<Sidebar open={sidebarOpen} onClose={sidebarHandler}>
 				{sidebarMenu}
-			</Drawer>
+			</Sidebar>
 
 			<Outlet />
 		</div>
