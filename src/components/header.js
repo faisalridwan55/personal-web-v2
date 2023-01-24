@@ -11,19 +11,16 @@ import { PAGES } from "../App";
 import { FlexBox, FlexRow } from "./grid";
 import { HoverTextButton } from "./button";
 import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
-
-const ContactButton = ({ isDesktop }) => {
-	const props = {
-		variant: "outlined",
-		startIcon: isDesktop ? <EmailIcon /> : null,
-		sx: { px: isDesktop ? 1.5 : 0.5 },
-	};
-	return (
-		<FlexRow justifyContent="flex-end" py={2}>
-			<Button {...props}>{isDesktop ? "Contact" : <EmailIcon />}</Button>
-		</FlexRow>
-	);
-};
+import { useState } from "react";
+import {
+	ListItemIcon,
+	ListItemText,
+	Menu,
+	MenuItem,
+	Snackbar,
+} from "@mui/material";
+import { CONTACTS } from "../constant";
+import Alert from "./alert";
 
 const Title = ({ isDesktop }) => {
 	return (
@@ -36,6 +33,74 @@ const Title = ({ isDesktop }) => {
 };
 
 function Header({ sidebarHandler }) {
+	const [anchorElContact, setAnchorElContact] = useState(null);
+	const [showSnackbar, setShowSnackbar] = useState(false);
+
+	const openMenu = Boolean(anchorElContact);
+
+	const openMenuHandler = (event) => {
+		setAnchorElContact(event.currentTarget);
+	};
+
+	const closeMenuHandler = () => setAnchorElContact(null);
+
+	const closeSnackbarHandler = () => setShowSnackbar(false);
+
+	const ContactButton = (
+		<FlexRow justifyContent="flex-end" py={2}>
+			<Snackbar
+				open={showSnackbar}
+				autoHideDuration={3000}
+				anchorOrigin={{ vertical: "top", horizontal: "center" }}
+				onClose={closeSnackbarHandler}
+			>
+				<Alert sx={{ width: "100%" }} onClose={closeSnackbarHandler}>
+					Email copied to clibboard
+				</Alert>
+			</Snackbar>
+			<Button
+				variant="outlined"
+				onClick={openMenuHandler}
+				sx={{ px: 0.5, display: { xs: "flex", sm: "none" } }}
+			>
+				<EmailIcon />
+			</Button>
+			<Button
+				variant="outlined"
+				startIcon={<EmailIcon />}
+				onClick={openMenuHandler}
+				sx={{ px: 1.5, display: { xs: "none", sm: "flex" } }}
+			>
+				Contact
+			</Button>
+			<Menu
+				anchorEl={anchorElContact}
+				open={openMenu}
+				onClose={closeMenuHandler}
+			>
+				{CONTACTS.map((contact) => (
+					<MenuItem
+						key={contact.name}
+						onClick={() => {
+							if (contact.name === "Email") {
+								navigator.clipboard.writeText(contact.address);
+								setShowSnackbar(true);
+							} else {
+								window.open(contact.address);
+							}
+							closeMenuHandler();
+						}}
+					>
+						<ListItemIcon sx={{ color: "inherit" }}>
+							{contact.icon}
+						</ListItemIcon>
+						<ListItemText textAlign="center">{contact.name}</ListItemText>
+					</MenuItem>
+				))}
+			</Menu>
+		</FlexRow>
+	);
+
 	const DesktopElement = (
 		<FlexRow sx={{ display: { xs: "none", sm: "flex" } }}>
 			<FlexRow justifyContent="flex-start">
@@ -50,7 +115,7 @@ function Header({ sidebarHandler }) {
 				))}
 			</FlexRow>
 			<Title isDesktop />
-			<ContactButton isDesktop />
+			{ContactButton}
 		</FlexRow>
 	);
 
@@ -70,7 +135,7 @@ function Header({ sidebarHandler }) {
 				</IconButton>
 			</FlexBox>
 			<Title />
-			<ContactButton />
+			{ContactButton}
 		</FlexRow>
 	);
 
