@@ -1,26 +1,26 @@
+import { useState } from "react";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import EmailIcon from "@mui/icons-material/Email";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Link as RouterLink } from "react-router-dom";
 
+import Alert from "./alert";
 import { PAGES } from "../App";
+import { CONTACTS } from "../constant";
 import { FlexBox, FlexRow } from "./grid";
 import { HoverTextButton } from "./button";
 import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
-import { useState } from "react";
 import {
-	ListItemIcon,
-	ListItemText,
 	Menu,
 	MenuItem,
 	Snackbar,
+	Container,
+	ListItemIcon,
+	ListItemText,
 } from "@mui/material";
-import { CONTACTS } from "../constant";
-import Alert from "./alert";
 
 const Title = ({ isDesktop }) => {
 	return (
@@ -51,8 +51,8 @@ function Header({ sidebarHandler }) {
 			<Snackbar
 				open={showSnackbar}
 				autoHideDuration={3000}
-				anchorOrigin={{ vertical: "top", horizontal: "center" }}
 				onClose={closeSnackbarHandler}
+				anchorOrigin={{ vertical: "top", horizontal: "center" }}
 			>
 				<Alert sx={{ width: "100%" }} onClose={closeSnackbarHandler}>
 					Email copied to clibboard
@@ -141,10 +141,10 @@ function Header({ sidebarHandler }) {
 
 	return (
 		<Slide direction="down" in={true} timeout={1000} mountOnEnter>
-			<Grid px={{ xs: 1.5, sm: 2 }}>
+			<Container>
 				{DesktopElement}
 				{MobileElement}
-			</Grid>
+			</Container>
 		</Slide>
 	);
 }
