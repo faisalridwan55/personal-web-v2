@@ -40,7 +40,11 @@ const Layout = () => {
 			</Zoom>
 			{PAGES.map((page) => (
 				<ListItem key={page.path} disablePadding>
-					<ListItemButton component={RouterLink} to={page.path || "/"}>
+					<ListItemButton
+						to={page.path || "/"}
+						component={RouterLink}
+						onClick={sidebarHandler}
+					>
 						<ListItemText
 							primary={capitalizeFirstLetter(page.path || "Home")}
 						/>
