@@ -141,7 +141,7 @@ function Header({ sidebarHandler }) {
 
 	return (
 		<Slide direction="down" in={true} timeout={1000} mountOnEnter>
-			<Container>
+			<Container maxWidth="xl">
 				{DesktopElement}
 				{MobileElement}
 			</Container>
